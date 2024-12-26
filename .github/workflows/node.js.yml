@@ -33,7 +33,7 @@ jobs:
       id: deployment
       uses: actions/upload-pages-artifact@v3
       with:
-        path: dist/test-angular-pages/
+        path: dist/test-angular-pages/browser/
 
   # Deploy job
   deploy:
