@@ -1,0 +1,26 @@
+default:
+  image: node:24.14.1
+
+stages:
+  - build-and-deploy
+
+build-and-deploy-job:
+  stage: build-and-deploy
+  script:
+    - npm install --package-lock-only
+    - npm ci
+    - npm run build --if-present
+    # - npm test
+    # - mkdir -p public # needed for gitlab pages
+    # - mv dist/test-angular-pages/* public/
+  pages:
+    # replaces the mkdir and mv
+    # publish: dist/test-angular-pages/
+    # publish: dist/test-angular-pages/browser
+    publish: dist/$CI_PROJECT_NAME/browser
+  # artifacts:
+  #   paths:
+  #     - dist/test-angular-pages/browser/
+  #   expires_in: 1 week # let's see without
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
