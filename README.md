@@ -24,3 +24,18 @@ You will then need to add two DNS entries : one CNAME (or other, depending on yo
 How to do that will depend on your domain name provider. The page will link to GitLab help pages with more information about the DNS process.  
 After setting up the DNS, click the refresh button near "Verification status" until it is verified, then click "Save changes".  
 Then, it is advised to force HTTPS, to uncheck "Use unique domain", and to select your custom domain name as "Primary domain".
+
+### Github Pages
+
+In the Github repo settings, go to "Pages", then enable using "GitHub Actions" instead of "Deploy from a branch".
+
+(TBD)
+
+Copy the `.github` directory to the root of your repo.
+
+(TBD)
+
+### Codeberg Pages
+
+Codeberg Pages doesn't currently support deploying on a current domain AND using CI to deploy.  
+I will wait for the "new method" with CI to support custom domains, and remain on GitLab meanwhile.
