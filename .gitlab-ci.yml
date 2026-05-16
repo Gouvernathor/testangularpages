@@ -5,10 +5,10 @@ stages:
   - build-and-deploy
 
 build-and-deploy-job:
+  stage: build-and-deploy
   variables:
     # replace the variable if the Angular app is not named the same way as the git repository
     BUILD_LOC: dist/$CI_PROJECT_NAME/browser
-  stage: build-and-deploy
   script:
     - npm install --package-lock-only
     - npm ci
@@ -19,7 +19,6 @@ build-and-deploy-job:
     - find $BUILD_LOC -type f -regex '.*\.\(htm\|html\|xml\|txt\|text\|js\|css\|svg\)$' -exec gzip -f -k {} \;
     - find $BUILD_LOC -type f -regex '.*\.\(htm\|html\|xml\|txt\|text\|js\|css\|svg\)$' -exec brotli -f -k {} \;
   pages:
-    # idem
     publish: $BUILD_LOC
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
